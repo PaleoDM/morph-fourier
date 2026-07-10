@@ -3,7 +3,7 @@ import { FolderOpen } from "lucide-react"
 /**
  * Shown when the backend discovers no series under the photos root. Series =
  * immediate subfolders of the photos directory, so the fix is always "add a
- * folder of photos". Series-agnostic copy — nothing hyoid-specific.
+ * folder of photos". Series-agnostic copy — nothing dataset-specific.
  */
 export function EmptyState() {
   return (

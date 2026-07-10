@@ -74,8 +74,8 @@ class PhotoRecord(MFModel):
     record_key: str  # stable id: `${seriesKey}/${filename}`
     series_key: str
     filename: str
-    specimen_id: str  # human-readable, e.g. "USNM 49775" or just "49775"
-    specimen_id_safe: str  # filename-safe, e.g. "USNM_49775"
+    specimen_id: str  # human-readable, e.g. "ABC 49775" or just "49775"
+    specimen_id_safe: str  # filename-safe, e.g. "ABC_49775"
     specimen_key: str  # `${specimenIdSafe}__${seriesKey}`
     label: str  # free display label parsed from filename
     photo_index: int  # nth photo of this specimen
@@ -157,7 +157,7 @@ class MaskEntry(MFModel):
     anchor_path: Optional[list[Point]] = None  # user-edited pen-tool anchors
     source: BinarySource
     outline_point_count: int  # resampled outline length written to CSV
-    outline_rel_path: str  # e.g. "state/dorsal/outlines/USNM_49775.csv"
+    outline_rel_path: str  # e.g. "state/dorsal/outlines/ABC_49775.csv"
 
 
 class MaskState(MFModel):

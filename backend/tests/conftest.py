@@ -1,8 +1,7 @@
 """Test bootstrap: make the backend package importable as ``app.*``.
 
-Tests import the ported modules as ``app.analysis`` etc. by putting
-``backend/src`` on ``sys.path``. ``test_parity`` additionally imports the frozen
-hyoid modules live as the golden reference (it adds ``apps/hyoids/src`` itself).
+Tests import the backend modules as ``app.analysis`` etc. by putting
+``backend/src`` on ``sys.path``.
 """
 
 from __future__ import annotations

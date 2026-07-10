@@ -16,7 +16,7 @@
 /** A series = one immediate subfolder of the photos root, analysed independently. */
 export interface Series {
   key: string          // sanitized: lowercase, non-alnum → "_"  (e.g. "dorsal")
-  displayName: string  // raw folder name (e.g. "Fused B-T (Dorsal view)")
+  displayName: string  // raw folder name (e.g. "Series 1 (Top view)")
   photoCount: number   // number of parseable image files in the folder
 }
 
@@ -25,8 +25,8 @@ export interface PhotoRecord {
   recordKey: string        // stable id: `${seriesKey}/${filename}`
   seriesKey: string
   filename: string
-  specimenId: string       // human-readable, e.g. "USNM 49775" or just "49775"
-  specimenIdSafe: string   // filename-safe, e.g. "USNM_49775"
+  specimenId: string       // human-readable, e.g. "ABC 49775" or just "49775"
+  specimenIdSafe: string   // filename-safe, e.g. "ABC_49775"
   specimenKey: string      // `${specimenIdSafe}__${seriesKey}` — groups multi-photo specimens
   label: string            // free display label parsed from filename (genus/species/etc.)
   photoIndex: number       // nth photo of this specimen
@@ -115,7 +115,7 @@ export interface MaskEntry {
   anchorPath: Point[] | null       // user-edited pen-tool anchors (the outline authority)
   source: BoxSource
   outlinePointCount: number        // resampled outline length written to CSV (e.g. 1024)
-  outlineRelPath: string           // e.g. "state/dorsal/outlines/USNM_49775.csv"
+  outlineRelPath: string           // e.g. "state/dorsal/outlines/ABC_49775.csv"
 }
 
 export interface MaskState {

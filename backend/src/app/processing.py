@@ -1,12 +1,10 @@
 """Image-processing primitives (SAM, rotation, contour extraction).
 
-Ported from ``apps/hyoids/src/processing.py``. The algorithms are unchanged —
-only the module wiring is adapted to the Morph-Fourier package layout:
+The module wiring follows the Morph-Fourier package layout:
 
-- ``from src.filenames import PhotoRecord`` → ``from .filenames import PhotoRecord``
-  (and the hyoid ``sys.path`` bootstrap is dropped).
+- ``PhotoRecord`` is imported as ``from .filenames import PhotoRecord``.
 - Path constants point at the backend tree and the configured photos root
-  (``MORPH_FOURIER_PHOTOS_ROOT``) instead of the hyoid repo's ``Cetacean hyoids/``.
+  (``MORPH_FOURIER_PHOTOS_ROOT``).
 
 There were no Streamlit imports to strip. Torch / SAM / OpenCV / scikit-image /
 scipy are imported lazily inside the functions that need them, so this module
@@ -276,7 +274,7 @@ def anterior_is_up(mask: np.ndarray) -> bool:
     between diverging thyrohyals). Returns True if anterior is currently up; False means
     we need a 180-deg flip.
 
-    NOTE: This is the hyoid-specific anatomy heuristic. Morph-Fourier's learned-orientation
+    NOTE: This is a legacy anatomy-specific heuristic. Morph-Fourier's learned-orientation
     algorithm (see ``orientation.py``) supersedes it, but the primitive is kept for parity
     and as a base-angle helper.
     """

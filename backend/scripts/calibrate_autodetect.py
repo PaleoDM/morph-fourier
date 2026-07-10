@@ -5,13 +5,13 @@ Not a unit test: this is the empirical instrument that (a) measures the
 the 4 spike photos reproduce the §4a findings, and (c) calibrates the match
 threshold τ from the real matched-distance distribution.
 
-Run it against Rebecca's dorsal photos:
+Run it against a photos root:
 
-    cd apps/morph-fourier/backend
+    cd backend
     source .venv/bin/activate
-    MORPH_FOURIER_PHOTOS_ROOT="../../hyoids/Cetacean hyoids" \
+    MORPH_FOURIER_PHOTOS_ROOT="./photos" \
         python scripts/calibrate_autodetect.py \
-        --series "Fused B-T (Dorsal view)" \
+        --series "Series 1" \
         --out /path/to/scratchpad/autodetect_calib
 
 Detection is colour-only (no SAM) so it runs over every photo instantly; SAM
@@ -98,7 +98,7 @@ def _annotate(image_rgb, box, mask, out_path: Path) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--series", default="Fused B-T (Dorsal view)")
+    ap.add_argument("--series", default="Series 1")
     ap.add_argument("--out", default=None, help="dir for annotated PNGs")
     ap.add_argument("--priming", type=int, default=12)
     ap.add_argument("--limit", type=int, default=0, help="cap photos (0 = all)")

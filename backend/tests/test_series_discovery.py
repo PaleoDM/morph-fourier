@@ -25,7 +25,7 @@ def _touch(folder, *names):
     "raw,expected",
     [
         ("Dorsal", "dorsal"),
-        ("Fused B-T (Dorsal view)", "fused_b_t_dorsal_view"),
+        ("Series 1 (Top view)", "series_1_top_view"),
         ("  Ventral!!  ", "ventral"),
         ("A/B\\C", "a_b_c"),
         ("already_safe_123", "already_safe_123"),
@@ -79,9 +79,9 @@ def test_default_institution_is_empty(tmp_path):
 def test_institution_prefix_parameter(tmp_path):
     root = tmp_path / "photos"
     _touch(root / "Dorsal", "Balaena_mysticetus_49775_1.jpg")
-    rec = discover_series(root, institution_code="USNM")[0].records[0]
-    assert rec.specimen_id == "USNM 49775"
-    assert rec.specimen_id_safe == "USNM_49775"
+    rec = discover_series(root, institution_code="ABC")[0].records[0]
+    assert rec.specimen_id == "ABC 49775"
+    assert rec.specimen_id_safe == "ABC_49775"
     assert rec.label == "Balaena mysticetus"
 
 

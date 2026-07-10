@@ -1,21 +1,18 @@
 """Filename parsing and series discovery for Morph-Fourier.
 
-Generalized from the hyoid app's `filenames.py`. The two hyoid-specific
-assumptions are removed:
+Two design choices keep discovery dataset-agnostic:
 
-- **Series, not views.** The hyoid app hardcoded two view folders
-  (`Fused B-T (Dorsal view)` / `... Ventral view`). Here every immediate
-  subfolder of the photos root is an independently-analyzed *series*, keyed by
-  a sanitized version of its folder name (`safe_key`).
-- **Institution prefix is a parameter, not a constant.** The hyoid app baked in
-  ``USNM``. Here `institution_code` defaults to the empty string; callers pass a
-  value only if their filenames omit an institution that should appear in output.
+- **Series, not fixed views.** Every immediate subfolder of the photos root is
+  an independently-analyzed *series*, keyed by a sanitized version of its folder
+  name (`safe_key`). No view names are hardcoded.
+- **Institution prefix is a parameter, not a constant.** ``institution_code``
+  defaults to the empty string; callers pass a value only if their filenames
+  omit an institution code that should appear in output.
 
-The default filename parser keeps the hyoid convention
-(``Genus_[species_]<catalog>_<index>.<ext>``) so existing datasets parse
-unchanged; the extension set is widened to include PNG. Files that do not match
-are **surfaced** (collected into an ``unparseable`` list), never silently
-dropped.
+The default filename parser expects
+``Genus_[species_]<catalog>_<index>.<ext>``; the extension set includes JPEG and
+PNG. Files that do not match are **surfaced** (collected into an ``unparseable``
+list), never silently dropped.
 """
 
 from __future__ import annotations
@@ -25,7 +22,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
-# No hardcoded institution — callers opt in. (The hyoid app used "USNM".)
+# No hardcoded institution — callers opt in.
 DEFAULT_INSTITUTION_CODE = ""
 
 # Image extensions we treat as candidate photos. Anything else (dirs, hidden
@@ -33,7 +30,7 @@ DEFAULT_INSTITUTION_CODE = ""
 # surfaced as unparseable rather than dropped.
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png"}
 
-# Default parser: the hyoid convention — Genus_[species_]<catalog>_<index>.<ext>
+# Default parser: Genus_[species_]<catalog>_<index>.<ext>
 # Catalog number may carry a single uppercase-letter prefix (e.g. A14449).
 # Species token is optional. Extensions widened to include PNG.
 _FILENAME_RE = re.compile(
@@ -50,7 +47,7 @@ def safe_key(name: str) -> str:
 
     Lowercase; every run of non-alphanumeric characters collapses to a single
     underscore; leading/trailing underscores are trimmed. e.g.
-    ``"Fused B-T (Dorsal view)"`` → ``"fused_b_t_dorsal_view"``.
+    ``"Series 1 (Top view)"`` → ``"series_1_top_view"``.
     """
     key = re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
     return key
@@ -84,14 +81,14 @@ class PhotoRecord:
 
     @property
     def specimen_id(self) -> str:
-        """Human-readable id: ``"USNM 49775"`` if an institution is set, else ``"49775"``."""
+        """Human-readable id: ``"ABC 49775"`` if an institution is set, else ``"49775"``."""
         if self.institution_code:
             return f"{self.institution_code} {self.catalog_number}"
         return self.catalog_number
 
     @property
     def specimen_id_safe(self) -> str:
-        """Filename-safe id: ``"USNM_49775"`` or just ``"49775"``."""
+        """Filename-safe id: ``"ABC_49775"`` or just ``"49775"``."""
         if self.institution_code:
             return f"{self.institution_code}_{self.catalog_number}"
         return self.catalog_number
@@ -145,7 +142,7 @@ def parse_filename(
     source_path: Path,
     institution_code: str = DEFAULT_INSTITUTION_CODE,
 ) -> PhotoRecord:
-    """Parse one filename with the default hyoid-convention regex.
+    """Parse one filename with the default naming-convention regex.
 
     Raises ``FilenameParseError`` if it does not match.
     """

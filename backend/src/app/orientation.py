@@ -1,6 +1,6 @@
 """Learned-orientation core (ROADMAP §Phase 4).
 
-Replaces the hyoid app's hardcoded anterior-up anatomy heuristic
+Replaces the legacy hardcoded anterior-up anatomy heuristic
 (``processing.anterior_is_up``) with a data-driven signature:
 
 - The user hand-orients a handful of *priming* specimens so they look "up".

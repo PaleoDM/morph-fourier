@@ -6,7 +6,7 @@ photo serving 200/404, SAM gating (503 when weights absent), and — behind the
 math itself is covered by the Phase 1A parity/state suites.
 
 Each test runs against an isolated on-disk state root and a synthetic photos
-root so nothing touches the real ``backend/state`` or the hyoid dataset.
+root so nothing touches the real ``backend/state`` or any real dataset.
 """
 
 from __future__ import annotations

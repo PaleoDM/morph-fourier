@@ -1,103 +1,103 @@
 {
-  "series": "fused_b_t_dorsal_view",
-  "displayName": "Fused B-T (Dorsal view)",
-  "note": "Truth oracle = frozen hyoid anterior_is_up heuristic (anterior-horns-at-top). expectedFlip = base-angle outline needs +180 to reach anterior-up.",
+  "series": "series_1",
+  "displayName": "Series 1 (Top view)",
+  "note": "Truth oracle = frozen anterior_is_up heuristic (asymmetric end at top). expectedFlip = base-angle outline needs +180 to reach the reference-up orientation.",
   "harmonics": 8,
   "specimens": {
-    "fused_b_t_dorsal_view/Megaptera_13656_1.jpg": {
-      "filename": "Megaptera_13656_1.jpg",
-      "outlineCsv": "orientation/Megaptera_13656_1.csv",
+    "series_1/specimen_03_1.jpg": {
+      "filename": "specimen_03_1.jpg",
+      "outlineCsv": "orientation/specimen_03_1.csv",
       "baseAngleDeg": -174.7074,
       "solidity": 0.5574,
       "expectedFlip": false
     },
-    "fused_b_t_dorsal_view/Megaptera_13656_2.jpg": {
-      "filename": "Megaptera_13656_2.jpg",
-      "outlineCsv": "orientation/Megaptera_13656_2.csv",
+    "series_1/specimen_03_2.jpg": {
+      "filename": "specimen_03_2.jpg",
+      "outlineCsv": "orientation/specimen_03_2.csv",
       "baseAngleDeg": -174.7074,
       "solidity": 0.5574,
       "expectedFlip": false
     },
-    "fused_b_t_dorsal_view/Orcaella_199743_4.jpg": {
-      "filename": "Orcaella_199743_4.jpg",
-      "outlineCsv": "orientation/Orcaella_199743_4.csv",
+    "series_1/specimen_05_4.jpg": {
+      "filename": "specimen_05_4.jpg",
+      "outlineCsv": "orientation/specimen_05_4.csv",
       "baseAngleDeg": -177.9336,
       "solidity": 0.8923,
       "expectedFlip": true
     },
-    "fused_b_t_dorsal_view/Phocoena_phocoena_218733_3.jpg": {
-      "filename": "Phocoena_phocoena_218733_3.jpg",
-      "outlineCsv": "orientation/Phocoena_phocoena_218733_3.csv",
+    "series_1/specimen_06_3.jpg": {
+      "filename": "specimen_06_3.jpg",
+      "outlineCsv": "orientation/specimen_06_3.csv",
       "baseAngleDeg": -84.3008,
       "solidity": 0.8917,
       "expectedFlip": true
     },
-    "fused_b_t_dorsal_view/Phocoena_phocoena_218735_2.jpg": {
-      "filename": "Phocoena_phocoena_218735_2.jpg",
-      "outlineCsv": "orientation/Phocoena_phocoena_218735_2.csv",
+    "series_1/specimen_07_2.jpg": {
+      "filename": "specimen_07_2.jpg",
+      "outlineCsv": "orientation/specimen_07_2.csv",
       "baseAngleDeg": -161.4368,
       "solidity": 0.6275,
       "expectedFlip": true
     },
-    "fused_b_t_dorsal_view/Balaenoptera_musculus_237567_1.jpg": {
-      "filename": "Balaenoptera_musculus_237567_1.jpg",
-      "outlineCsv": "orientation/Balaenoptera_musculus_237567_1.csv",
+    "series_1/specimen_01_1.jpg": {
+      "filename": "specimen_01_1.jpg",
+      "outlineCsv": "orientation/specimen_01_1.csv",
       "baseAngleDeg": -89.7549,
       "solidity": 0.6337,
       "expectedFlip": false
     },
-    "fused_b_t_dorsal_view/Balaenoptera_musculus_237567_2.jpg": {
-      "filename": "Balaenoptera_musculus_237567_2.jpg",
-      "outlineCsv": "orientation/Balaenoptera_musculus_237567_2.csv",
+    "series_1/specimen_01_2.jpg": {
+      "filename": "specimen_01_2.jpg",
+      "outlineCsv": "orientation/specimen_01_2.csv",
       "baseAngleDeg": -89.7549,
       "solidity": 0.6337,
       "expectedFlip": false
     },
-    "fused_b_t_dorsal_view/Balaenoptera_musculus_237567_3.jpg": {
-      "filename": "Balaenoptera_musculus_237567_3.jpg",
-      "outlineCsv": "orientation/Balaenoptera_musculus_237567_3.csv",
+    "series_1/specimen_01_3.jpg": {
+      "filename": "specimen_01_3.jpg",
+      "outlineCsv": "orientation/specimen_01_3.csv",
       "baseAngleDeg": -91.0728,
       "solidity": 0.6266,
       "expectedFlip": false
     },
-    "fused_b_t_dorsal_view/Balaenoptera_musculus_237567_4.jpg": {
-      "filename": "Balaenoptera_musculus_237567_4.jpg",
-      "outlineCsv": "orientation/Balaenoptera_musculus_237567_4.csv",
+    "series_1/specimen_01_4.jpg": {
+      "filename": "specimen_01_4.jpg",
+      "outlineCsv": "orientation/specimen_01_4.csv",
       "baseAngleDeg": -91.0728,
       "solidity": 0.6266,
       "expectedFlip": false
     },
-    "fused_b_t_dorsal_view/Balaenoptera_musculus_237567_5.jpg": {
-      "filename": "Balaenoptera_musculus_237567_5.jpg",
-      "outlineCsv": "orientation/Balaenoptera_musculus_237567_5.csv",
+    "series_1/specimen_01_5.jpg": {
+      "filename": "specimen_01_5.jpg",
+      "outlineCsv": "orientation/specimen_01_5.csv",
       "baseAngleDeg": -88.9965,
       "solidity": 0.7291,
       "expectedFlip": true
     },
-    "fused_b_t_dorsal_view/Balaenoptera_musculus_237567_6.jpg": {
-      "filename": "Balaenoptera_musculus_237567_6.jpg",
-      "outlineCsv": "orientation/Balaenoptera_musculus_237567_6.csv",
+    "series_1/specimen_01_6.jpg": {
+      "filename": "specimen_01_6.jpg",
+      "outlineCsv": "orientation/specimen_01_6.csv",
       "baseAngleDeg": -88.9965,
       "solidity": 0.7291,
       "expectedFlip": true
     },
-    "fused_b_t_dorsal_view/Monodon_267957_2.jpg": {
-      "filename": "Monodon_267957_2.jpg",
-      "outlineCsv": "orientation/Monodon_267957_2.csv",
+    "series_1/specimen_04_2.jpg": {
+      "filename": "specimen_04_2.jpg",
+      "outlineCsv": "orientation/specimen_04_2.csv",
       "baseAngleDeg": -91.2697,
       "solidity": 0.8229,
       "expectedFlip": false
     },
-    "fused_b_t_dorsal_view/Inia_395415_1.jpg": {
-      "filename": "Inia_395415_1.jpg",
-      "outlineCsv": "orientation/Inia_395415_1.csv",
+    "series_1/specimen_02_1.jpg": {
+      "filename": "specimen_02_1.jpg",
+      "outlineCsv": "orientation/specimen_02_1.csv",
       "baseAngleDeg": -86.9194,
       "solidity": 0.9025,
       "expectedFlip": true
     },
-    "fused_b_t_dorsal_view/Inia_395415_2.jpg": {
-      "filename": "Inia_395415_2.jpg",
-      "outlineCsv": "orientation/Inia_395415_2.csv",
+    "series_1/specimen_02_2.jpg": {
+      "filename": "specimen_02_2.jpg",
+      "outlineCsv": "orientation/specimen_02_2.csv",
       "baseAngleDeg": -176.9925,
       "solidity": 0.852,
       "expectedFlip": false

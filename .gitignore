@@ -11,7 +11,7 @@ backend/models/*.pt
 
 # Runtime state — all of it, for the alpha. State is per-series and tied to
 # whatever MORPH_FOURIER_PHOTOS_ROOT points at; the alpha points at EXTERNAL
-# hyoid photos not in this repo, so the state (curation/orient/crop/mask JSONs,
+# photos not in this repo, so the state (curation/orient/crop/mask JSONs,
 # derived outline/EFA/PCA CSVs, export bundles, and the standardized-image cache)
 # is purely local test data. Revisit if/when a bundled example dataset ships
 # with the beta and we want its state committed. (ROADMAP §3 assumed

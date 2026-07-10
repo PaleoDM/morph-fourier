@@ -36,7 +36,7 @@ export interface EditorSavePayload {
 interface EditorWizardProps {
   seriesKey: string
   record: PhotoRecord
-  /** Dialog title, e.g. "Prime USNM 49775" or "Refine USNM 49775". */
+  /** Dialog title, e.g. "Prime ABC 49775" or "Refine ABC 49775". */
   title: string
   /** Prefill box + angle when re-editing an existing specimen (masking always restarts). */
   initialBox: CropRect | null

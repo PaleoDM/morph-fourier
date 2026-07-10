@@ -1,6 +1,6 @@
 # Morph-Fourier backend dependencies
-# Mirrors apps/hyoids/requirements.txt for the shape-analysis primitives
-# (torch, SAM, EFA, PCA) and adds FastAPI + uvicorn for the web API.
+# Shape-analysis primitives (torch, SAM, EFA, PCA) plus FastAPI + uvicorn for
+# the web API.
 
 # Web framework
 fastapi>=0.115
@@ -8,7 +8,7 @@ uvicorn[standard]>=0.32
 python-multipart>=0.0.12  # for file uploads
 pydantic>=2.9
 
-# Image processing (mirrors hyoid app)
+# Image processing
 pillow>=10.0
 opencv-python-headless>=4.8
 scikit-image>=0.22
