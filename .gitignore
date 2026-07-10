@@ -1,0 +1,48 @@
+# Python venv (created by ./setup.command inside backend/)
+backend/.venv/
+
+# Node modules (created by ./setup.command inside frontend/)
+frontend/node_modules/
+frontend/dist/
+
+# SAM weights (downloaded by setup script)
+backend/models/*.pth
+backend/models/*.pt
+
+# Runtime state — all of it, for the alpha. State is per-series and tied to
+# whatever MORPH_FOURIER_PHOTOS_ROOT points at; the alpha points at EXTERNAL
+# hyoid photos not in this repo, so the state (curation/orient/crop/mask JSONs,
+# derived outline/EFA/PCA CSVs, export bundles, and the standardized-image cache)
+# is purely local test data. Revisit if/when a bundled example dataset ships
+# with the beta and we want its state committed. (ROADMAP §3 assumed
+# photos-in-repo, where state would be tracked — this supersedes that for alpha.)
+backend/state/
+
+# Photos root — leave empty in repo (users add their own series).
+# Match everything under photos (series dirs AND symlinks to external photo
+# folders, which carry machine-specific absolute paths), except the .gitkeep.
+photos/*
+!photos/.gitkeep
+
+# Bundled tutorial dataset — TRACKED so it ships with the published repo.
+# (User photos and personal test series stay ignored by the rule above.)
+!photos/Passiflora (Tutorial)/
+
+# Manuscript drafting workspace — the paper draft; local only, never published.
+/manuscript/
+
+# Internal build & development docs (roadmap, agent guide, design specs) —
+# kept locally for reference, not shipped in the public repo.
+/build-docs/
+
+# Python / macOS cruft
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/

@@ -1,0 +1,131 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Morph-Fourier design system (Phase 2)
+   Every token is documented in docs/DESIGN.md. Components consume these via
+   Tailwind utility classes (bg-primary, text-muted-foreground, …) — NEVER raw
+   hex. Light and dark are both first-class; `.dark` on <html> switches themes.
+   Colours are authored in oklch for perceptual uniformity across the palette.
+   ───────────────────────────────────────────────────────────────────────── */
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.625rem;
+
+  /* Surfaces */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  /* Brand accent — restrained teal. Primary = interactive brand colour. */
+  --primary: oklch(0.62 0.108 184);
+  --primary-foreground: oklch(0.985 0 0);
+
+  /* Neutral supporting surfaces */
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+
+  /* Accent = subtle teal-tinted surface for hovers / active nav */
+  --accent: oklch(0.95 0.024 184);
+  --accent-foreground: oklch(0.40 0.09 184);
+
+  /* Semantic status — mirror the CurationState statuses */
+  --destructive: oklch(0.577 0.245 27.325);   /* rejected */
+  --destructive-foreground: oklch(0.985 0 0);
+  --success: oklch(0.60 0.13 150);             /* accepted */
+  --success-foreground: oklch(0.985 0 0);
+  --warning: oklch(0.75 0.15 80);              /* unreviewed */
+  --warning-foreground: oklch(0.205 0 0);
+
+  /* Lines & focus */
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.62 0.108 184);
+}
+
+.dark {
+  /* Surfaces */
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+
+  /* Brand accent — brighter teal so it lifts off the dark background */
+  --primary: oklch(0.70 0.122 183);
+  --primary-foreground: oklch(0.205 0 0);
+
+  /* Neutral supporting surfaces */
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+
+  /* Accent = subtle teal-tinted dark surface */
+  --accent: oklch(0.28 0.03 184);
+  --accent-foreground: oklch(0.90 0.03 184);
+
+  /* Semantic status */
+  --destructive: oklch(0.704 0.191 22.216);    /* rejected */
+  --destructive-foreground: oklch(0.985 0 0);
+  --success: oklch(0.70 0.14 150);             /* accepted */
+  --success-foreground: oklch(0.145 0 0);
+  --warning: oklch(0.80 0.15 82);              /* unreviewed */
+  --warning-foreground: oklch(0.205 0 0);
+
+  /* Lines & focus */
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.70 0.122 183);
+}
+
+/* Map design tokens into Tailwind's theme so utilities (bg-*, text-*, border-*,
+   rounded-*) resolve to them. `inline` keeps the values referencing the CSS
+   custom properties above, so the .dark override flows through automatically. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

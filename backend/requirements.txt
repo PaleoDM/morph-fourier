@@ -1,0 +1,31 @@
+# Morph-Fourier backend dependencies
+# Mirrors apps/hyoids/requirements.txt for the shape-analysis primitives
+# (torch, SAM, EFA, PCA) and adds FastAPI + uvicorn for the web API.
+
+# Web framework
+fastapi>=0.115
+uvicorn[standard]>=0.32
+python-multipart>=0.0.12  # for file uploads
+pydantic>=2.9
+
+# Image processing (mirrors hyoid app)
+pillow>=10.0
+opencv-python-headless>=4.8
+scikit-image>=0.22
+numpy>=1.26,<2.0
+
+# ML: SAM + torch pinned for Intel Mac compatibility.
+# torch 2.2.2 was the last x86_64 macOS wheel, so the <2.3 ceiling is what
+# lets Rebecca's Intel Mac resolve at all; it also keeps the dev box (Apple
+# Silicon) on the same 2.2.x the alpha deploys against instead of drifting to
+# a much newer torch. numpy<2 for the 2.2 ABI.
+torch>=2.2,<2.3
+torchvision>=0.17,<0.18
+segment-anything>=1.0
+
+# Analysis math
+pyefd>=1.6
+scikit-learn>=1.4
+
+# Utility
+pandas>=2.0

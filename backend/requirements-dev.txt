@@ -1,0 +1,8 @@
+# Backend test/dev dependencies (not needed at runtime).
+# Install after ./setup.command:  backend/.venv/bin/pip install -r requirements-dev.txt
+-r requirements.txt
+
+pytest>=8.0
+# Starlette's TestClient (used by tests/test_api.py) needs an HTTP client.
+# This bleeding-edge starlette pins the httpx2 fork rather than httpx.
+httpx2>=2.0
