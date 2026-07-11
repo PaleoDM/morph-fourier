@@ -21,12 +21,14 @@ from . import (
     review,
     series,
     taxonomy,
+    upload,
 )
 
 # Ordered so more specific literal paths are registered before the catch-all
 # ``{record_key:path}`` routes within each stage — FastAPI matches in order.
 ROUTERS = [
     series.router,
+    upload.router,
     curation.router,
     orient.router,
     crop.router,

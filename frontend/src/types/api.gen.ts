@@ -37,7 +37,11 @@ export interface paths {
          */
         get: operations["list_series_api_series_get"];
         put?: never;
-        post?: never;
+        /**
+         * Create Series
+         * @description Create a new series from a display name (+ optional initial images).
+         */
+        post: operations["create_series_api_series_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -58,6 +62,26 @@ export interface paths {
         get: operations["series_status_api__series__status_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/{series}/upload": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Upload To Series
+         * @description Add images to an existing series.
+         */
+        post: operations["upload_to_series_api__series__upload_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -529,6 +553,9 @@ export interface paths {
         /**
          * Run Pca
          * @description Fit PCA, write scores/loadings/eigenvalues CSVs, update pca_settings.
+         *
+         *     ``excludedSpecimens`` (when provided) sets which specimens are dropped from the
+         *     fit before recomputing; pass ``[]`` to clear the exclusion and refit on all.
          */
         post: operations["run_pca_api__series__pca_run_post"];
         delete?: never;
@@ -670,11 +697,14 @@ export interface paths {
          * Prime Segment
          * @description SAM box-predict the target bone inside the user's raw-frame box (spec §4 step 2).
          *
-         *     The box is the crop AND the SAM prompt (one gesture). Returns a simplified anchor
-         *     path in the *cropped* (box) frame — the seed for the pen-tool editor, whose
-         *     background is the same cropped region served by ``/prime/{recordKey}/image``. A
-         *     box that SAM can't segment cleanly (empty / scale-card / low score) → 422 so the
-         *     UI can prompt the user to redraw it.
+         *     The box is the crop AND the SAM prompt (one gesture). To keep SAM reliable when the
+         *     box is drawn snug (box-only SAM then grabs the whole rectangle → ``scale_card``, the
+         *     single biggest Prime friction), it is seeded with geometric point prompts from the
+         *     box itself (:func:`autodetect.box_center_prompts`): the centre is the target, the
+         *     corners are background. Returns a simplified anchor path in the *cropped* (box) frame
+         *     — the seed for the pen-tool editor, whose background is the same cropped region served
+         *     by ``/prime/{recordKey}/image``. A box SAM still can't segment (empty / low score) →
+         *     422 so the UI can prompt the user to redraw it.
          */
         post: operations["prime_segment_api__series__prime_segment_post"];
         delete?: never;
@@ -921,6 +951,21 @@ export interface components {
              */
             skippedNoExemplars: boolean;
         };
+        /** Body_create_series_api_series_post */
+        Body_create_series_api_series_post: {
+            /** Name */
+            name: string;
+            /**
+             * Files
+             * @default []
+             */
+            files: string[];
+        };
+        /** Body_upload_to_series_api__series__upload_post */
+        Body_upload_to_series_api__series__upload_post: {
+            /** Files */
+            files: string[];
+        };
         /** CalibrationResult */
         CalibrationResult: {
             /** Meancurve */
@@ -1007,8 +1052,9 @@ export interface components {
             /**
              * Anchor
              * @default top
+             * @enum {string}
              */
-            anchor: ("top" | "bottom" | "left" | "right");
+            anchor: "top" | "bottom" | "left" | "right";
         };
         /** EfaSettings */
         EfaSettings: {
@@ -1033,8 +1079,9 @@ export interface components {
             /**
              * Anchor
              * @default top
+             * @enum {string}
              */
-            anchor: ("top" | "bottom" | "left" | "right");
+            anchor: "top" | "bottom" | "left" | "right";
             /**
              * Nspecimenscomputed
              * @default 0
@@ -1482,6 +1529,25 @@ export interface components {
                 };
             };
         };
+        /**
+         * UploadResult
+         * @description Outcome of creating a series or uploading images into one.
+         */
+        UploadResult: {
+            series: components["schemas"]["Series"];
+            /** Uploaded */
+            uploaded: number;
+            /**
+             * Skipped
+             * @default []
+             */
+            skipped: string[];
+            /**
+             * Unrecognized
+             * @default 0
+             */
+            unrecognized: number;
+        };
         /** ValidationError */
         ValidationError: {
             /** Location */
@@ -1546,6 +1612,39 @@ export interface operations {
             };
         };
     };
+    create_series_api_series_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": components["schemas"]["Body_create_series_api_series_post"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UploadResult"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     series_status_api__series__status_get: {
         parameters: {
             query?: never;
@@ -1566,6 +1665,41 @@ export interface operations {
                     "application/json": {
                         [key: string]: components["schemas"]["StageStatus"];
                     };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    upload_to_series_api__series__upload_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                series: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": components["schemas"]["Body_upload_to_series_api__series__upload_post"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UploadResult"];
                 };
             };
             /** @description Validation Error */

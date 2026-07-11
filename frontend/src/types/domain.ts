@@ -20,6 +20,14 @@ export interface Series {
   photoCount: number   // number of parseable image files in the folder
 }
 
+/** POST /api/series and POST /api/{series}/upload — outcome of an upload. */
+export interface UploadResult {
+  series: Series
+  uploaded: number       // image files written to disk
+  skipped: string[]      // filenames rejected (not a .jpg/.jpeg/.png)
+  unrecognized: number   // written, but the filename doesn't match the naming pattern
+}
+
 /** One source photo, parsed from its filename. */
 export interface PhotoRecord {
   recordKey: string        // stable id: `${seriesKey}/${filename}`

@@ -1,5 +1,7 @@
 import { useEffect } from "react"
+import { Plus } from "lucide-react"
 
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
@@ -8,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Skeleton } from "@/components/ui/skeleton"
+import { NewSeriesDialog } from "@/components/NewSeriesDialog"
 import { useSeriesList } from "@/api/hooks"
 import { useActiveSeriesStore } from "@/state/useActiveSeriesStore"
 
@@ -46,20 +49,29 @@ export function SeriesSelector() {
   }
 
   return (
-    <Select
-      value={activeSeriesKey ?? undefined}
-      onValueChange={setActiveSeriesKey}
-    >
-      <SelectTrigger className="w-56" aria-label="Active series">
-        <SelectValue placeholder="Select a series…" />
-      </SelectTrigger>
-      <SelectContent>
-        {series.map((s) => (
-          <SelectItem key={s.key} value={s.key}>
-            {s.displayName}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <div className="flex items-center gap-2">
+      <Select
+        value={activeSeriesKey ?? undefined}
+        onValueChange={setActiveSeriesKey}
+      >
+        <SelectTrigger className="w-56" aria-label="Active series">
+          <SelectValue placeholder="Select a series…" />
+        </SelectTrigger>
+        <SelectContent>
+          {series.map((s) => (
+            <SelectItem key={s.key} value={s.key}>
+              {s.displayName}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <NewSeriesDialog
+        trigger={
+          <Button variant="outline" size="icon" aria-label="New series" title="New series">
+            <Plus className="size-4" />
+          </Button>
+        }
+      />
+    </div>
   )
 }

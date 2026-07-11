@@ -70,6 +70,15 @@ class Series(MFModel):
     photo_count: int  # number of parseable image files
 
 
+class UploadResult(MFModel):
+    """Outcome of creating a series or uploading images into one."""
+
+    series: Series
+    uploaded: int  # image files written to disk
+    skipped: list[str] = []  # filenames rejected (not a .jpg/.jpeg/.png)
+    unrecognized: int = 0  # written, but the filename doesn't match the naming pattern
+
+
 class PhotoRecord(MFModel):
     record_key: str  # stable id: `${seriesKey}/${filename}`
     series_key: str

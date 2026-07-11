@@ -66,6 +66,24 @@ async function request<T>(path: string, init?: JsonRequestInit): Promise<T> {
   return (await res.json()) as T
 }
 
+/**
+ * POST multipart/form-data (file uploads). The browser sets the multipart
+ * boundary, so we must NOT set Content-Type ourselves — hence a dedicated path
+ * rather than the JSON `request()` above.
+ */
+export async function postForm<T>(path: string, form: FormData): Promise<T> {
+  const res = await fetch(`${API_BASE}${path}`, {
+    method: "POST",
+    headers: { Accept: "application/json" },
+    body: form,
+  })
+  if (!res.ok) {
+    throw new ApiError(res.status, path, await errorMessage(res))
+  }
+  if (res.status === 204) return undefined as T
+  return (await res.json()) as T
+}
+
 /** Low-level typed verbs. Prefer the resource functions below in the hooks. */
 export const api = {
   get: <T>(path: string) => request<T>(path),
