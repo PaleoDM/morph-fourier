@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: Morph-Fourier
+message: >-
+  Morph-Fourier is free and open source. You may use, modify, fork, and
+  redistribute it under the MIT License. We only ask that, if it contributes
+  to your work, you cite the paper listed under preferred-citation.
+type: software
+authors:
+  - given-names: Carlos Mauricio
+    family-names: Peredo
+    email: paleoperedo@gmail.com
+  - given-names: Rebecca J.
+    family-names: Strauch
+repository-code: https://github.com/PaleoDM/morph-fourier
+license: MIT
+preferred-citation:
+  type: article
+  title: >-
+    Introducing Morph-Fourier: a no-code, semi-automated tool for outline
+    morphometrics
+  authors:
+    - given-names: Carlos Mauricio
+      family-names: Peredo
+    - given-names: Rebecca J.
+      family-names: Strauch
+  journal: in prep
+  # year and doi to be added on publication
