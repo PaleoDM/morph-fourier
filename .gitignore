@@ -46,3 +46,6 @@ __pycache__/
 # Editor / IDE
 .vscode/
 .idea/
+
+# Generated click-to-launch app (built by setup.command on macOS)
+/Morph-Fourier.app/
