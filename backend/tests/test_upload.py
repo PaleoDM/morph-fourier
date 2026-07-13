@@ -109,3 +109,16 @@ def test_upload_to_existing_series_grows_count(client):
 def test_upload_unknown_series_404(client):
     r = client.post("/api/does_not_exist/upload", files=[_img_file("Ccc_1_1.jpg")])
     assert r.status_code == 404
+
+
+def test_delete_series_removes_folder_and_listing(client, env):
+    client.post("/api/series", data={"name": "Temp"}, files=[_img_file("Ttt_1_1.jpg")])
+    assert "temp" in [s["key"] for s in client.get("/api/series").json()]
+    r = client.delete("/api/temp")
+    assert r.status_code == 204
+    assert "temp" not in [s["key"] for s in client.get("/api/series").json()]
+    assert not (env / "photos" / "Temp").exists()
+
+
+def test_delete_unknown_series_404(client):
+    assert client.delete("/api/nope").status_code == 404

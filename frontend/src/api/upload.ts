@@ -7,7 +7,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 
-import { postForm, type Schemas } from "@/api/client"
+import { api, postForm, type Schemas } from "@/api/client"
 import { queryKeys } from "@/api/hooks"
 
 type UploadResult = Schemas["UploadResult"]
@@ -52,6 +52,19 @@ export function useCreateSeries() {
     onSuccess: (res) => {
       void qc.invalidateQueries({ queryKey: queryKeys.series })
       summarize(res)
+    },
+    onError: errorToast,
+  })
+}
+
+/** Delete a series entirely (its photos + saved analysis). Invalidates the series list. */
+export function useDeleteSeries() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (seriesKey: string) => api.delete<void>(`/${encodeURIComponent(seriesKey)}`),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: queryKeys.series })
+      toast.success("Series deleted")
     },
     onError: errorToast,
   })

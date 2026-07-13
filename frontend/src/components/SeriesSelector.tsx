@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select"
 import { Skeleton } from "@/components/ui/skeleton"
 import { NewSeriesDialog } from "@/components/NewSeriesDialog"
+import { DeleteSeriesButton } from "@/components/DeleteSeriesButton"
 import { useSeriesList } from "@/api/hooks"
 import { useActiveSeriesStore } from "@/state/useActiveSeriesStore"
 
@@ -48,6 +49,8 @@ export function SeriesSelector() {
     )
   }
 
+  const activeSeries = series.find((s) => s.key === activeSeriesKey)
+
   return (
     <div className="flex items-center gap-2">
       <Select
@@ -72,6 +75,12 @@ export function SeriesSelector() {
           </Button>
         }
       />
+      {activeSeries && (
+        <DeleteSeriesButton
+          seriesKey={activeSeries.key}
+          displayName={activeSeries.displayName}
+        />
+      )}
     </div>
   )
 }

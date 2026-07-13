@@ -17,11 +17,11 @@ from __future__ import annotations
 import shutil
 from pathlib import Path
 
-from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, File, Form, HTTPException, Response, UploadFile
 
 from .. import models
 from ..filenames import IMAGE_EXTENSIONS, safe_key
-from ..state import discover_series, photos_root
+from ..state import discover_series, photos_root, series_dir
 from . import deps
 
 router = APIRouter(prefix="/api", tags=["upload"])
@@ -94,3 +94,12 @@ def upload_to_series(
     ds = deps.get_series(series)  # 404 if unknown
     uploaded, skipped = _write_images(photos_root() / ds.display_name, files)
     return _result(series, uploaded, skipped)
+
+
+@router.delete("/{series}", status_code=204)
+def delete_series(series: str) -> Response:
+    """Delete a series entirely: its photo folder and all of its saved state."""
+    ds = deps.get_series(series)  # 404 if unknown
+    shutil.rmtree(photos_root() / ds.display_name, ignore_errors=True)
+    shutil.rmtree(series_dir(series), ignore_errors=True)
+    return Response(status_code=204)
