@@ -91,6 +91,11 @@ echo "[+] Building the Morph-Fourier app ..."
 if command -v osacompile >/dev/null 2>&1 && [ -f launcher.applescript ]; then
     rm -rf "Morph-Fourier.app"
     if osacompile -o "Morph-Fourier.app" launcher.applescript >/dev/null 2>&1; then
+        # Give the app its Morph-Fourier icon.
+        if [ -f "brand/Morph-Fourier.icns" ]; then
+            cp "brand/Morph-Fourier.icns" "Morph-Fourier.app/Contents/Resources/applet.icns"
+            touch "Morph-Fourier.app"
+        fi
         echo "   ✓ Built Morph-Fourier.app."
     else
         echo "   (Couldn't build the app wrapper — run-prod.command still works.)"

@@ -1,6 +1,7 @@
 import { Suspense, lazy, useCallback, useEffect, useState } from "react"
 import { KeyboardIcon } from "lucide-react"
 
+import { Logo } from "@/components/Logo"
 import { SeriesSelector } from "@/components/SeriesSelector"
 import { StageNav } from "@/components/StageNav"
 import { EmptyState } from "@/components/EmptyState"
@@ -82,7 +83,7 @@ export function AppShell() {
       {/* Header */}
       <header className="flex h-14 shrink-0 items-center justify-between gap-4 border-b border-border px-4">
         <div className="flex items-center gap-2">
-          <div className="size-6 rounded-md bg-primary" aria-hidden />
+          <Logo className="h-7 w-auto" />
           <span className="text-base font-semibold tracking-tight">
             Morph-Fourier
           </span>
@@ -131,6 +132,11 @@ export function AppShell() {
           </main>
         </div>
       )}
+
+      {/* Footer — shown on every stage */}
+      <footer className="shrink-0 border-t border-border px-4 py-2 text-center text-xs text-muted-foreground">
+        Carlos Mauricio Peredo, 2026 &nbsp;|&nbsp; Funded by Vivitec AI
+      </footer>
 
       <ShortcutsHelp open={helpOpen} onOpenChange={setHelpOpen} />
     </div>

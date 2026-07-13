@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="brand/icon.svg" alt="Morph-Fourier" width="120">
+</p>
+
 # Morph-Fourier
 
 **Turn photographs of 2D outlines into shape data — no coding required.**
