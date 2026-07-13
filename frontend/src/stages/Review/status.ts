@@ -17,10 +17,10 @@ export interface ReviewStatus {
 
 /** The 11A internal `flagDetail` codes → the sentence Review shows under a flagged thumb. */
 const FLAG_DETAIL_TEXT: Record<string, string> = {
-  no_bone_colour: "No bone-coloured region stood out from the background.",
-  warm_background: "A warm background looked like bone — the box grabbed the surface.",
-  low_sam_score: "SAM couldn’t isolate a clean bone in the detected box.",
-  scale_card: "The largest region looked like the scale card, not a bone.",
+  no_bone_colour: "No distinct region stood out from the background.",
+  warm_background: "The background blended with the specimen — the box grabbed the surface.",
+  low_sam_score: "SAM couldn’t isolate a clean shape in the detected box.",
+  scale_card: "The largest region looked like a scale card, not the specimen.",
   segmentation_failed: "Segmentation failed on this photo.",
 }
 
@@ -38,7 +38,7 @@ export function reviewStatus(result: AutoResult | undefined, hasMask: boolean): 
       ? {
           label: "Detection failed",
           tone: "destructive",
-          detail: detail ?? "The target bone couldn’t be isolated automatically.",
+          detail: detail ?? "The target specimen couldn’t be isolated automatically.",
         }
       : {
           label: "Low confidence",

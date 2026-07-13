@@ -19,7 +19,7 @@ import { primingCount, type AutomateSummary } from "@/types/domain"
 
 /**
  * Stage 3 — Automate (Phase 11D). One-click batch auto-detect: for every non-primed
- * canonical the backend takes the largest cohesive bone blob, SAM box-predicts it,
+ * canonical the backend takes the largest cohesive specimen blob, SAM box-predicts it,
  * matches it against the nearest primed exemplar, and auto-crops/orients/masks it —
  * carrying the primed exemplars forward into the same geometry state so the whole
  * canonical set flows downstream. Gated on a ready exemplar set (Stage 2 — Prime);

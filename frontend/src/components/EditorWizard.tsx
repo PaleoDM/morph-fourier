@@ -54,17 +54,17 @@ const STEP_META: Record<Step, { n: number; label: string; hint: string }> = {
   crop: {
     n: 1,
     label: "Crop",
-    hint: "Draw a loose box around just the target bone — exclude the stylohyals and the scale card. This box is both the crop and the SAM prompt.",
+    hint: "Draw a loose box around just the target specimen — exclude any scale card or clutter. This box is both the crop and the SAM prompt.",
   },
   mask: {
     n: 2,
     label: "Mask",
-    hint: "SAM traced the bone. Drag anchors to refine · click the curve to add · ⌥-click to remove.",
+    hint: "SAM traced the specimen. Drag anchors to refine · click the curve to add · ⌥-click to remove.",
   },
   orient: {
     n: 3,
     label: "Orient",
-    hint: "Rotate the specimen anterior-up. This teaches the pipeline which way is “up” for shapes like this one.",
+    hint: "Rotate the specimen to a consistent, upright orientation. This teaches the pipeline which way is “up” for shapes like this one.",
   },
 }
 
@@ -196,7 +196,7 @@ export function EditorWizard({
             ) : (
               <div className="flex flex-col items-center gap-2 text-sm text-muted-foreground">
                 <Loader2Icon className="size-5 animate-spin" />
-                Segmenting the bone with SAM…
+                Segmenting the specimen with SAM…
               </div>
             ))}
 
@@ -210,7 +210,7 @@ export function EditorWizard({
           {step === "crop" && (
             <>
               <div className="flex-1 text-xs text-muted-foreground">
-                {box ? "Adjust the 8 handles to frame the bone." : "Loading photo…"}
+                {box ? "Adjust the 8 handles to frame the specimen." : "Loading photo…"}
               </div>
               <Button onClick={() => runSegment("mask")} disabled={!box || segment.isPending} className="gap-1.5">
                 {segment.isPending ? (

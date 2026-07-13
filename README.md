@@ -6,7 +6,7 @@ Morph-Fourier is a free, open-source app that carries you through a complete out
 
 It works for any 2D outline you can photograph: leaves, teeth, shells, bones, artifacts, tools. The core idea is that **you no longer hand-process every photo.** You carefully prepare a small, diverse handful, and the app does the bulk of the work by matching everything else against them.
 
-<!-- screenshot: interactive morphospace with shape-along-PC strips -->
+![The interactive morphospace, coloured by species, with per-group PCA-fit toggles below.](docs/images/morphospace.png)
 
 ---
 
@@ -95,6 +95,8 @@ Examples: `Passiflora_edulis_0007_1.jpg`, `Quercus_A1449_2.png`. Files that don'
 ## The workflow, stage by stage
 
 The app is a numbered rail of eight stages. Work through them in order.
+
+![The Review stage: every extracted outline with Auto / Primed / Refined provenance badges, flagged specimens first.](docs/images/review.png)
 
 1. **Curation** — review each photo, mark it accepted or rejected, and choose one *canonical* photo per specimen (the representative the rest of the pipeline uses). Your originals are never moved or altered.
 2. **Prime** — hand-prepare a small, deliberately *diverse* set (usually 5–15). For each, crop to the specimen, trace its outline (the app proposes one; you nudge the control points), and rotate it to a consistent orientation. Diversity matters more than quantity.
