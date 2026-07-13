@@ -107,6 +107,8 @@ The app is a numbered rail of eight stages. Work through them in order.
 7. **PCA** — reduces the descriptors to a few axes of shape variation, with a scree plot to guide how many to keep.
 8. **Morphospace** — an interactive scatter of every specimen. Colour points by any metadata you add, and see how shape changes along each axis.
 
+![The guided outline editor: SAM proposes an outline and you refine it by dragging the anchor points.](docs/images/editor.png)
+
 ## Where your results live
 
 Everything is stored on your machine, per series, under `backend/state/<series>/`. Notably, each PCA run writes plain spreadsheet files — `scores.csv`, `loadings.csv`, `eigenvalues.csv` — so you can build a publication-quality figure in R, Python, or a spreadsheet. Because every decision is recorded, an analysis is reproducible: the same photos, worked the same way, give the same result.
