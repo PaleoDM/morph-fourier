@@ -13,6 +13,7 @@ authors:
     family-names: Strauch
 repository-code: https://github.com/PaleoDM/morph-fourier
 license: MIT
+doi: 10.5281/zenodo.21395315
 preferred-citation:
   type: article
   title: >-

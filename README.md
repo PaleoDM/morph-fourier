@@ -6,6 +6,8 @@
 
 **Turn photographs of 2D outlines into shape data — no coding required.**
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21395315.svg)](https://doi.org/10.5281/zenodo.21395315)
+
 Morph-Fourier is a free, open-source app that carries you through a complete outline shape analysis on your own machine: bring in a folder of specimen photos, teach the app what a good result looks like on a handful of examples, let it automatically prepare the rest, review anything it was unsure about, and then compute elliptic Fourier descriptors, run a principal component analysis, and explore the result as an interactive morphospace. Everything runs locally in a web browser — nothing is uploaded anywhere.
 
 It works for any 2D outline you can photograph: leaves, teeth, shells, bones, artifacts, tools. The core idea is that **you no longer hand-process every photo.** You carefully prepare a small, diverse handful, and the app does the bulk of the work by matching everything else against them.
@@ -132,6 +134,8 @@ The interactive morphospace is for *exploration*; for a finished figure, export 
 Morph-Fourier is released under the **MIT License** (see [LICENSE](LICENSE)). You are free to use, modify, **fork**, and redistribute it. We only ask that, if it contributes to your work, you **cite the paper**:
 
 > Peredo CM, Strauch RJ. *Introducing Morph-Fourier: a no-code, semi-automated tool for outline morphometrics.* (see [CITATION.cff](CITATION.cff))
+
+The software itself is archived and independently citable via Zenodo: [10.5281/zenodo.21395315](https://doi.org/10.5281/zenodo.21395315).
 
 ## Credits
 
